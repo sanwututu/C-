@@ -9,6 +9,7 @@ enum
 	E_MENU_SETTING,
 	E_MENU_EXIT
 };
+
 extern SGameMgr g_gameMgr;
 SGameMenu::SGameMenu()
 {

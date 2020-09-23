@@ -3,7 +3,7 @@
 
 
 SGameMgr::SGameMgr()
-{
+{	
 	nGameState = 0;
 }
 

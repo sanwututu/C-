@@ -3,10 +3,9 @@
 
 #include "stdafx.h"
 #include "GameMgr.h"
-#include "GameMap.h"
 
-extern SGameMap g_Player;
 using namespace std;
+
 SGameMgr g_gameMgr;
 int _tmain(int argc, _TCHAR* argv[])
 {
