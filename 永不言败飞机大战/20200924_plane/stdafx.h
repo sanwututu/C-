@@ -19,6 +19,14 @@
 using namespace std;
 #define KEY_DOWN(vk_code) (GetAsyncKeyState(vk_code)&0x8000?1:0)
 
+#define SAFE_DEL(p)	if(p){delete p; p = nullptr;}
+
+enum
+{
+	E_STATE_MENU,
+	E_STATE_ROLE,
+	E_STATE_MAP,
+};
 enum DIR
 {
 	E_DIR_UP,

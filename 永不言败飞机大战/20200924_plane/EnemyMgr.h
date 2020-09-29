@@ -1,14 +1,14 @@
 #pragma once
 #include "Enemy.h"
 
-struct SEnemyMgr
+class CEnemyMgr
 {
 public:
-	SEnemyMgr();
-	~SEnemyMgr();
+	CEnemyMgr();
+	~CEnemyMgr();
 	int m_nTimer;
 	void update();
-	SEnemy getEnemy(int nRow, int nCol);
-	vector<SEnemy> VecEnemy;
+	CEnemy* getEnemy(int nRow, int nCol);
+	vector<CEnemy*> VecEnemy;
 };
 

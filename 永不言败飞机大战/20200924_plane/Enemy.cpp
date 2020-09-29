@@ -2,22 +2,24 @@
 #include "Enemy.h"
 
 
-SEnemy::SEnemy()
+CEnemy::CEnemy()
 {
 	nRow = 0;
 	nCol = 0;
 	nSpeed = 0;
 	nID = 0;
 }
-SEnemy::SEnemy(SEnemyDt config)
+void CEnemy::init(SEnemyDt* config)
 {
 	m_nTimer = 0;
-	nID = config.nID;
-	nSpeed = config.nSpeed;
-	strName = config.strName;
-	strPic = config.strPic;
+	nID = config->nID;
+	nSpeed = config->nSpeed;
+	nAck = config->nAck;
+	nHp = config->nHp;
+	strName = config->strName;
+	strPic = config->strPic;
 }
-void SEnemy::update(){
+void CEnemy::update(){
 	m_nTimer++;
 	if (m_nTimer > nSpeed){
 		m_nTimer = 0;
@@ -26,6 +28,6 @@ void SEnemy::update(){
 	
 }
 
-SEnemy::~SEnemy()
+CEnemy::~CEnemy()
 {
 }

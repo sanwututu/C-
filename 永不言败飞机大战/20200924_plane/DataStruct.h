@@ -8,7 +8,14 @@ struct SLevelDt
 		nColSize = 0;
 		nBirthRow = 0;
 		nBirthCol = 0;
-		memset(arrMap, 0, sizeof(arrMap));
+	}
+	~SLevelDt(){
+		for (int i = 0; i < nRowSize; i++)
+		{
+			//数组指针到删除用delete [] + 数组名称
+			delete[] pArrMap[i];
+		}
+		delete[] pArrMap;
 	}
 	string strName;
 	int nID;
@@ -16,18 +23,22 @@ struct SLevelDt
 	int nColSize;
 	int nBirthRow;
 	int nBirthCol;
-	int arrMap[50][50];
+	int** pArrMap;
+	/*int arrMap[50][50];*/
 };
 
-struct SLevelDtMgr
+class CLevelDtMgr
 {
-	void loadFile(const string& strPath);
-	SLevelDt getDataByID(int nID);
-	int getSize();
-	SLevelDt getDataByIndex(int nIndex);
-	vector<SLevelDt> VecData;
-};
+public:
+	CLevelDtMgr();
+	~CLevelDtMgr();
 
+	void loadFile(const string& strPath);
+	SLevelDt* getDataByID(int nID);
+	int getSize();
+	SLevelDt* getDataByIndex(int nIndex);
+	vector<SLevelDt*> m_VecData;
+};
 struct SBulletDt
 {
 	SBulletDt(){
@@ -41,13 +52,16 @@ struct SBulletDt
 	string strName;
 	string strPic;
 };
-struct SBulletDtMgr
+class CBulletDtMgr
 {
+public:
+	CBulletDtMgr();
+	~CBulletDtMgr();
 	void loadFile(const string& strPath);
-	SBulletDt getDataByID(int nID);
+	SBulletDt* getDataByID(int nID);
 	int getSize();
-	SBulletDt getDataByIndex(int nIndex);
-	vector<SBulletDt> VecData;
+	SBulletDt* getDataByIndex(int nIndex);
+	vector<SBulletDt*> m_VecData;
 };
 struct SEnemyDt
 {
@@ -64,13 +78,16 @@ struct SEnemyDt
 	string strName;
 	string strPic;
 };
-struct SEnemyDtMgr
+class CEnemyDtMgr
 {
+public:
+	CEnemyDtMgr();
+	~CEnemyDtMgr();
 	void loadFile(const string& strPath);
-	SEnemyDt getDataByID(int nID);
+	SEnemyDt* getDataByID(int nID);
 	int getSize();
-	SEnemyDt getDataByIndex(int nIndex);
-	vector<SEnemyDt> VecData;
+	SEnemyDt* getDataByIndex(int nIndex);
+	vector<SEnemyDt*> m_VecData;
 };
 struct SPlayerDt{
 	SPlayerDt(){
@@ -85,11 +102,14 @@ struct SPlayerDt{
 	string strName;
 	string strPic;
 };
-struct SPlayerDtMgr
+class CPlayerDtMgr
 {
+public:
+	CPlayerDtMgr();
+	~CPlayerDtMgr();
 	void loadFile(const string& strPath);
-	SPlayerDt getDataByID(int nID);
+	SPlayerDt* getDataByID(int nID);
 	int getSize();
-	SPlayerDt getDataByIndex(int nIndex);
-	vector<SPlayerDt> VecData;
+	SPlayerDt* getDataByIndex(int nIndex);
+	vector<SPlayerDt*> m_VecData;
 };

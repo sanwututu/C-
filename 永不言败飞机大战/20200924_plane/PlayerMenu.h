@@ -1,12 +1,15 @@
 #pragma once
-struct SPlayerMenu
+class CPlayerMenu
 {
 public:
-	SPlayerMenu();
-	~SPlayerMenu();
+	CPlayerMenu();
+	~CPlayerMenu();
 	int nPlayerState;
-	int nPlayerID;
+	int nHp;
+	int nAck;
+	void init();
 	void update();
 	void render();
+	void getValue(int nInHp, int nInAck);
 };
 

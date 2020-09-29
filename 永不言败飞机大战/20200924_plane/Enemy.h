@@ -1,12 +1,12 @@
 #pragma once
 #include "DataStruct.h"
 
-struct SEnemy
+class CEnemy
 {
 public:
-	SEnemy();
-	SEnemy(SEnemyDt config);
-	~SEnemy();
+	CEnemy();
+	~CEnemy();
+	void init(SEnemyDt* config);
 	void update();
 	bool isExit(int nRow, int nCol);
 	int nRow;

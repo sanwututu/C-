@@ -7,14 +7,14 @@ struct Vec2{
 	int nRowBk;
 	int nColBk;
 };
-struct SPlayer
+class CPlayer
 {
 public:
 
 	
-	SPlayer();
-	~SPlayer();
-	void init(SPlayerDt config);
+	CPlayer();
+	~CPlayer();
+	void init(SPlayerDt* config);
 	void revert();
 	void setPosition(int nInRow, int nInCol);
 	void update();

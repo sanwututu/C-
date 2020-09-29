@@ -1,12 +1,11 @@
 #pragma once
 
-struct SBullet
+class CBullet
 {
 	
-	//
 public:
-	SBullet();
-	~SBullet();
+	CBullet();
+	~CBullet();
 	void update();
 	int nRow;
 	int nCol;

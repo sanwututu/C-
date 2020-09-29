@@ -2,29 +2,25 @@
 #include "Player.h"
 #include "GameMgr.h"
 
-extern SBulletMgr g_bulletMgr;
-SPlayer::SPlayer()
+extern CBulletMgr g_bulletMgr;
+CPlayer::CPlayer()
 {
 
-	nID = g_gameMgr.playerMenu.nPlayerID;
-
 }
-//SPlayer::SPlayer(SPlayerDt config)
-//{
-//	
-//}
-SPlayer::~SPlayer()
+
+CPlayer::~CPlayer()
 {
 }
-void SPlayer::init(SPlayerDt config){
-	nID = config.nID;
-	nBulletID = config.nBulletID;
-	strName = config.strName;
-	strPic = config.strPic;
-	nHp = config.nHp;
-	nAck = config.nAck;
+void CPlayer::init(SPlayerDt* config){
+	nID = config->nID;
+	nBulletID = config->nBulletID;
+	strName = config->strName;
+	strPic = config->strPic;
+	nHp = config->nHp;
+	nAck = config->nAck;
 }
-void SPlayer::update(){
+void CPlayer::update(){
+
 	backup();
 	if (KEY_DOWN(VK_UP))
 	{
@@ -45,7 +41,7 @@ void SPlayer::update(){
 	else if (KEY_DOWN(VK_SPACE)){
 		/*g_bulletMgr.loadBullet();*//*
 		int nBulletID = g_gameMgr.gameMap.g_Player.nBulletID;*/
-		g_gameMgr.gameMap.g_bulletMgr.addBullet(nBulletID, arrPos[3].nRow, arrPos[3].nCol);
+		g_pGameMgr->m_pGameMap->g_bulletMgr->addBullet(nBulletID, arrPos[3].nRow, arrPos[3].nCol);
 	}
 	else if (KEY_DOWN(VK_SHIFT)){
 		changeShape();
@@ -56,7 +52,7 @@ void SPlayer::update(){
 	SPlayer g_Player(config);*/
 
 }
-void SPlayer::move(int nOffsetX, int nOffsetY)
+void CPlayer::move(int nOffsetX, int nOffsetY)
 {
 	for (int i = 0; i < 4; i++)
 	{
@@ -64,20 +60,20 @@ void SPlayer::move(int nOffsetX, int nOffsetY)
 		arrPos[i].nCol += nOffsetY;
 	}
 }
-void SPlayer::revert(){
+void CPlayer::revert(){
 	//返回备份坐标
 	for (int i = 0; i < 4; i++){
 		arrPos[i].nRow = arrPos[i].nRowBk;
 		arrPos[i].nCol = arrPos[i].nColBk;
 	}
 }
-void SPlayer::backup(){
+void CPlayer::backup(){
 	for (int i = 0; i < 4; i++){
 		arrPos[i].nRowBk = arrPos[i].nRow;
 		arrPos[i].nColBk = arrPos[i].nCol;
 	}
 }
-void SPlayer::setPosition(int nInRow, int nInCol)
+void CPlayer::setPosition(int nInRow, int nInCol)
 { 
 	arrPos[0].nRow = nInRow;
 	arrPos[0].nCol = nInCol-1;
@@ -90,7 +86,7 @@ void SPlayer::setPosition(int nInRow, int nInCol)
 
 
 }
-void SPlayer::changeShape(){
+void CPlayer::changeShape(){
 	
 	nDir++;
 
@@ -136,7 +132,7 @@ void SPlayer::changeShape(){
 	}
 }
 //判断第i行第j列是否有玩家格子
-bool SPlayer::isExit(int nRow, int nCol)
+bool CPlayer::isExit(int nRow, int nCol)
 {
 	for (int m = 0; m < 4; m++)
 	{

@@ -4,18 +4,18 @@
 #include "ConfigMgr.h"
 #include "EnemyMgr.h"
 
-struct SGameMap
+class CGameMap
 {
 public:  
-	SGameMap();
-	//~SGameMap();
+	CGameMap();
+	~CGameMap();
 	void update();
 	void render();
-	SLevelDt levelDt;
-	SEnemyDt enemyDt;
-	SPlayer g_Player;
-	SBulletMgr g_bulletMgr;
-	SEnemyMgr g_enemyMgr;
+	SLevelDt* m_pLevelDt;
+	SEnemyDt* enemyDt;
+	CPlayer* g_Player;
+	CBulletMgr* g_bulletMgr;
+	CEnemyMgr* g_enemyMgr;
 
 };
 

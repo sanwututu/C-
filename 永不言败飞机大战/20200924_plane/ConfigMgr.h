@@ -1,16 +1,16 @@
 #pragma once
 #include "DataStruct.h"
 
-struct SConfigMgr
+class CConfigMgr
 {
 public:
-	SConfigMgr();
-	~SConfigMgr();
+	CConfigMgr();
+	~CConfigMgr();
 
-	SLevelDtMgr levelDtMgr;
-	SBulletDtMgr bulletDtMgr;
-	SEnemyDtMgr enemyDtMgr;
-	SPlayerDtMgr playerDtMgr;
+	CLevelDtMgr* m_pLevelDtMgr;
+	CBulletDtMgr* m_pBulletDtMgr;
+	CEnemyDtMgr* m_pEnemyDtMgr;
+	CPlayerDtMgr* m_pPlayerDtMgr;
 };
 
-extern SConfigMgr g_configMgr;
+extern CConfigMgr* g_pConfigMgr;

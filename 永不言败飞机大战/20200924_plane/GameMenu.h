@@ -1,9 +1,10 @@
 #pragma once
-struct SGameMenu
+class CGameMenu
 {
 public:
 
-	SGameMenu();
+	CGameMenu();
+	~CGameMenu();
 	void update();
 	void render();
 	int nMenuState;

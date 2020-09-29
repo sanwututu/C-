@@ -2,41 +2,57 @@
 #include "GameMgr.h"
 
 
-SGameMgr::SGameMgr()
+CGameMgr::CGameMgr()
+:nGameState(E_STATE_MENU)
 {	
-	nGameState = 0;
+	m_pGameMenu = new CGameMenu();
+	m_pGameMap = new CGameMap();
+	m_pPlayerMenu = new CPlayerMenu();
 }
-
+CGameMgr::~CGameMgr()
+{
+	SAFE_DEL(m_pGameMenu);
+	SAFE_DEL(m_pGameMap);
+	SAFE_DEL(m_pPlayerMenu);
+}
 //::×÷ÓÃÓò·û
-void SGameMgr::update()
+void CGameMgr::update()
 {
-	if (0 == nGameState)
+	if (E_STATE_MENU == nGameState)
 	{
-		gameMenu.update();
+		m_pGameMenu->update();
 	}
-	else if (1 == nGameState){
+	else if (E_STATE_ROLE == nGameState){
 
-		playerMenu.update();
+		m_pPlayerMenu->update();
 	}
-	else if (2 == nGameState)
+	else if (E_STATE_MAP == nGameState)
 	{
-		gameMap.update();
+		m_pGameMap->update();
 	}
 }
 
-void SGameMgr::render()
+void CGameMgr::render()
 {
-	if (0 == nGameState)
+	if (E_STATE_MENU == nGameState)
 	{
-		gameMenu.render();
+		m_pGameMenu->render();
 	}
-	else if (1 == nGameState){
+	else if (E_STATE_ROLE == nGameState){
 
-		playerMenu.render();
+		m_pPlayerMenu->render();
 	}
-	else if (2 == nGameState)
+	else if (E_STATE_MAP == nGameState)
 	{
-		gameMap.render();
+		m_pGameMap->render();
 	}
 }
+void CGameMgr::setState(int nState)
+{
+	nGameState = nState;
+}
 
+int CGameMgr::getState()
+{
+	return nGameState;
+}

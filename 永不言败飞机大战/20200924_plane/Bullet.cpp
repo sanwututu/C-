@@ -2,7 +2,7 @@
 #include "Bullet.h"
 
 
-SBullet::SBullet()
+CBullet::CBullet()
 {
 	nID = 0;
 	nRow = 0;
@@ -10,8 +10,8 @@ SBullet::SBullet()
 	nSpeed = 0;
 	nAck = 0;
 }
-void SBullet::update(){
-	if (E_DIR_UP == nDir)
+void CBullet::update(){
+				if (E_DIR_UP == nDir)
 				{
 					nRow--;
 				}
@@ -19,6 +19,7 @@ void SBullet::update(){
 					nRow++;
 				}
 				else if (E_DIR_LEFT == nDir){
+
 					nCol--;
 				}
 				else if (E_DIR_RIGHT == nDir)
@@ -28,6 +29,6 @@ void SBullet::update(){
 				/*
 	nRow--;*/
 }
-SBullet::~SBullet()
+CBullet::~CBullet()
 {
 }

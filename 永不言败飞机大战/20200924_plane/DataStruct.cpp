@@ -1,59 +1,94 @@
 #include "stdafx.h"
 #include "DataStruct.h"
 
-void SLevelDtMgr::loadFile(const string& strPath)
+CLevelDtMgr::CLevelDtMgr()
+{
+}
+CLevelDtMgr::~CLevelDtMgr()
+{
+	for (int i = 0; i < m_VecData.size(); i++)
+	{
+		if (m_VecData[i])
+		{
+			delete m_VecData[i];
+			m_VecData[i] = nullptr;
+		}
+	}
+	m_VecData.clear();
+}
+void CLevelDtMgr::loadFile(const string& strPath)
 {
 	ifstream infile(strPath);
 	if (infile)
 	{
 		int nCount = 0;
 		infile >> nCount;
-		for (int i = 0; i < 3; i++)
+		for (int i = 0; i < nCount; i++)
 		{
-			SLevelDt levelDt;
-			infile >> levelDt.strName >> levelDt.nID >> levelDt.nRowSize >> levelDt.nColSize >> levelDt.nBirthRow >> levelDt.nBirthCol;
-			for (int m = 0; m < levelDt.nRowSize; m++)
+			SLevelDt*pData = new SLevelDt();
+			infile >> pData->strName >> pData->nID >> pData->nRowSize >> pData->nColSize >> pData->nBirthRow >> pData->nBirthCol;
+			//
+			pData->pArrMap = new int*[pData->nRowSize];
+			for (int m = 0; m < pData->nRowSize; m++)
 			{
-				for (int n = 0; n < levelDt.nColSize; n++)
+				pData->pArrMap[m] = new int[pData->nColSize];
+			}
+
+			for (int m = 0; m < pData->nRowSize; m++)
+			{
+				for (int n = 0; n < pData->nColSize; n++)
 				{
-					infile >> levelDt.arrMap[m][n];
+					infile >> pData->pArrMap[m][n];
 				}
 			}
-			VecData.push_back(levelDt);
+			m_VecData.push_back(pData);
 		}
 	}
 	infile.close();
 }
 
-SLevelDt SLevelDtMgr::getDataByID(int nID)
+SLevelDt* CLevelDtMgr::getDataByID(int nID)
 {
-	for (SLevelDt data : VecData)
+	for (int i = 0; i < m_VecData.size(); i++)
 	{
-		if (data.nID == nID)
+		if (m_VecData[i]->nID == nID)
 		{
-			return data;
+			return m_VecData[i];
 		}
 	}
-	SLevelDt levelDt;
-	return levelDt;
+	return nullptr;
 }
 
-int SLevelDtMgr::getSize()
+int CLevelDtMgr::getSize()
 {
-	return VecData.size();
+	return m_VecData.size();
 }
 
-SLevelDt SLevelDtMgr::getDataByIndex(int nIndex)
+SLevelDt* CLevelDtMgr::getDataByIndex(int nIndex)
 {
-	if (nIndex < 0 || nIndex > VecData.size() - 1)
+	if (nIndex < 0 || nIndex > m_VecData.size() - 1)
 	{
-		SLevelDt data;
-		return data;
+		return nullptr;
 	}
-	return VecData[nIndex];
+	return m_VecData[nIndex];
 }
-
-void SBulletDtMgr::loadFile(const string& strPath)
+//子弹
+CBulletDtMgr::CBulletDtMgr()
+{
+}
+CBulletDtMgr::~CBulletDtMgr()
+{
+	for (int i = 0; i < m_VecData.size(); i++)
+	{
+		if (m_VecData[i])
+		{
+			delete m_VecData[i];
+			m_VecData[i] = nullptr;
+		}
+	}
+	m_VecData.clear();
+}
+void CBulletDtMgr::loadFile(const string& strPath)
 {
 	ifstream infile(strPath);
 	if (infile)
@@ -64,43 +99,57 @@ void SBulletDtMgr::loadFile(const string& strPath)
 		infile >> nCount;
 		for (int i = 0; i < nCount; i++)
 		{
-			SBulletDt data;
-			infile >> data.nID >> data.nSpeed >> data.strName >> data.strPic>>data.nAck;
-			VecData.push_back(data);
+			SBulletDt* pData = new SBulletDt;
+			infile >> pData->nID >> pData->nSpeed >> pData->strName >> pData->strPic >> pData->nAck;
+			m_VecData.push_back(pData);
 		}
 	}
 	infile.close();
 }
 
-SBulletDt SBulletDtMgr::getDataByID(int nID)
+SBulletDt* CBulletDtMgr::getDataByID(int nID)
 {
-	for (SBulletDt data : VecData)
+	for (int i = 0; i < m_VecData.size(); i++)
 	{
-		if (data.nID == nID)
+		if (m_VecData[i]->nID == nID)
 		{
-			return data;
+			return m_VecData[i];
 		}
 	}
-	SBulletDt data;
-	return data;
+	return nullptr;
 }
 
-int SBulletDtMgr::getSize()
+int CBulletDtMgr::getSize()
 {
-	return VecData.size();
+	return m_VecData.size();
 }
 
-SBulletDt SBulletDtMgr::getDataByIndex(int nIndex)
+SBulletDt* CBulletDtMgr::getDataByIndex(int nIndex)
 {
-	if (nIndex < 0 || nIndex > VecData.size() - 1)
+	if (nIndex < 0 || nIndex > m_VecData.size() - 1)
 	{
-		SBulletDt data;
-		return data;
+		SBulletDt* pData = new SBulletDt();
+		return pData;
 	}
-	return VecData[nIndex];
+	return m_VecData[nIndex];
 }
 //敌人SEnemyDt
-void SEnemyDtMgr::loadFile(const string& strPath)
+CEnemyDtMgr::CEnemyDtMgr()
+{
+}
+CEnemyDtMgr::~CEnemyDtMgr()
+{
+	for (int i = 0; i < m_VecData.size(); i++)
+	{
+		if (m_VecData[i])
+		{
+			delete m_VecData[i];
+			m_VecData[i] = nullptr;
+		}
+	}
+	m_VecData.clear();
+}
+void CEnemyDtMgr::loadFile(const string& strPath)
 {
 	ifstream infile(strPath);
 	if (infile)
@@ -111,44 +160,58 @@ void SEnemyDtMgr::loadFile(const string& strPath)
 		infile >> nCount;
 		for (int i = 0; i < nCount; i++)
 		{
-			SEnemyDt data;
-			infile >> data.nID >> data.nSpeed >> data.strName >> data.strPic >> data.nAck >> data.nHp;
-			VecData.push_back(data);
+			SEnemyDt* pData = new SEnemyDt();
+			infile >> pData->nID >> pData->nSpeed >> pData->strName >> pData->strPic >> pData->nAck >> pData->nHp;
+			m_VecData.push_back(pData);
 		}
 	}
 	infile.close();
 }
 
-SEnemyDt SEnemyDtMgr::getDataByID(int nID)
+SEnemyDt* CEnemyDtMgr::getDataByID(int nID)
 {
-	for (SEnemyDt data : VecData)
+
+	for (int i = 0; i < m_VecData.size(); i++)
 	{
-		if (data.nID == nID)
+		if (m_VecData[i]->nID == nID)
 		{
-			return data;
+			return m_VecData[i];
 		}
 	}
-	SEnemyDt data;
-	return data;
+	return nullptr;
 }
 
-int SEnemyDtMgr::getSize()
+int CEnemyDtMgr::getSize()
 {
-	return VecData.size();
+	return m_VecData.size();
 }
 
-SEnemyDt SEnemyDtMgr::getDataByIndex(int nIndex)
+SEnemyDt* CEnemyDtMgr::getDataByIndex(int nIndex)
 {
-	if (nIndex < 0 || nIndex > VecData.size() - 1)
+	if (nIndex < 0 || nIndex > m_VecData.size() - 1)
 	{
-		SEnemyDt data;
-		return data;
+		SEnemyDt* pData = new SEnemyDt();
+		return pData;
 	}
-	return VecData[nIndex];
+	return m_VecData[nIndex];
 }
 //玩家数据
-//敌人SEnemyDt
-void SPlayerDtMgr::loadFile(const string& strPath)
+CPlayerDtMgr::CPlayerDtMgr()
+{
+}
+CPlayerDtMgr::~CPlayerDtMgr()
+{
+	for (int i = 0; i < m_VecData.size(); i++)
+	{
+		if (m_VecData[i])
+		{
+			delete m_VecData[i];
+			m_VecData[i] = nullptr;
+		}
+	}
+	m_VecData.clear();
+}
+void CPlayerDtMgr::loadFile(const string& strPath)
 {
 	ifstream infile(strPath);
 	if (infile)
@@ -159,38 +222,38 @@ void SPlayerDtMgr::loadFile(const string& strPath)
 		infile >> nCount;
 		for (int i = 0; i < nCount; i++)
 		{
-			SPlayerDt data;
-			infile >> data.nID >>data.strName>>data.nBulletID >> data.strPic>>data.nHp>>data.nAck;
-			VecData.push_back(data);
+
+			SPlayerDt* pData = new SPlayerDt();
+			infile >> pData->nID >> pData->strName >> pData->nBulletID >> pData->strPic >> pData->nHp >> pData->nAck;
+			m_VecData.push_back(pData);
 		}
 	}
 	infile.close();
 }
 
-SPlayerDt SPlayerDtMgr::getDataByID(int nID)
+SPlayerDt* CPlayerDtMgr::getDataByID(int nID)
 {
-	for (SPlayerDt data : VecData)
+	for (int i = 0; i < m_VecData.size(); i++)
 	{
-		if (data.nID == nID)
+		if (m_VecData[i]->nID == nID)
 		{
-			return data;
+			return m_VecData[i];
 		}
 	}
-	SPlayerDt data;
-	return data;
+	return nullptr;
 }
 
-int SPlayerDtMgr::getSize()
+int CPlayerDtMgr::getSize()
 {
-	return VecData.size();
+	return m_VecData.size();
 }
 
-SPlayerDt SPlayerDtMgr::getDataByIndex(int nIndex)
+SPlayerDt* CPlayerDtMgr::getDataByIndex(int nIndex)
 {
-	if (nIndex < 0 || nIndex > VecData.size() - 1)
+	if (nIndex < 0 || nIndex > m_VecData.size() - 1)
 	{
-		SPlayerDt data;
-		return data;
+		SPlayerDt* pData = new SPlayerDt();
+		return pData;
 	}
-	return VecData[nIndex];
+	return m_VecData[nIndex];
 }

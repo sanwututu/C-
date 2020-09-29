@@ -3,16 +3,19 @@
 #include "GameMgr.h"
 
 
-SGameMenu::SGameMenu()
+CGameMenu::CGameMenu()
+:nMenuState(E_MENU_START)
 {
-	nMenuState = E_MENU_START;
 }
-void SGameMenu::update(){
+CGameMenu::~CGameMenu()
+{
+}
+void CGameMenu::update(){
 	if (KEY_DOWN(VK_RETURN))
 	{
 		if (E_MENU_START == nMenuState)
 		{
-			g_gameMgr.nGameState = 1;
+			g_pGameMgr->setState(E_STATE_ROLE);
 		}
 
 	}
@@ -33,7 +36,7 @@ void SGameMenu::update(){
 		}
 	}
 }
-void SGameMenu::render(){
+void CGameMenu::render(){
 
 	cout << "¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö" << endl;
 	cout << "¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö" << endl;

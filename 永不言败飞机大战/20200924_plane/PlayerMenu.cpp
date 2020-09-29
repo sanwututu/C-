@@ -3,33 +3,26 @@
 #include "GameMgr.h"
 
 
-SPlayerMenu::SPlayerMenu()
-{
-	nPlayerState = E_MENU_START;
-}
-SPlayerMenu::~SPlayerMenu()
+CPlayerMenu::CPlayerMenu()
+:nPlayerState(E_MENU_START)
 {
 }
-
-void SPlayerMenu::update()
+CPlayerMenu::~CPlayerMenu()
 {
-
-	SPlayerDt config = g_configMgr.playerDtMgr.getDataByID(nPlayerID);
+}
+void CPlayerMenu::getValue(int nInHp,int nInAck){
+	nHp = nInHp;
+	nAck = nInAck;
+}
+void CPlayerMenu::update()
+{
+	SPlayerDt* config = new SPlayerDt();
+	config = g_pConfigMgr->m_pPlayerDtMgr->getDataByID(nPlayerState+1);
+	getValue(config->nHp,config->nAck);
 	if (KEY_DOWN(VK_SPACE))
 	{
-		if (E_MENU_START == nPlayerState){
-			g_gameMgr.nGameState = 2;
-			g_gameMgr.gameMap.g_Player.init(config);
-		}
-		else if (E_MENU_SETTING == nPlayerState){
-			g_gameMgr.nGameState = 2;
-			g_gameMgr.gameMap.g_Player.init(config);
-		}
-		else if (E_MENU_EXIT == nPlayerState){
-			g_gameMgr.nGameState = 2;
-			g_gameMgr.gameMap.g_Player.init(config);
-		}
-			
+		g_pGameMgr->setState(E_STATE_MAP);
+		g_pGameMgr->m_pGameMap->g_Player->init(config);
 		
 	}
 	else if (KEY_DOWN(VK_RIGHT))
@@ -49,9 +42,8 @@ void SPlayerMenu::update()
 		}
 	}
 }
-void SPlayerMenu::render(){
+void CPlayerMenu::render(){
 
-	SPlayerDt config = g_configMgr.playerDtMgr.getDataByID(nPlayerID);
 		cout << "■■■■■■■■■■■■■■■■" << endl;
 		cout << "■                            ■" << endl;
 	if (E_MENU_START == nPlayerState)
@@ -60,7 +52,7 @@ void SPlayerMenu::render(){
 		cout << "■□□□    战战战     法法法 ■" << endl;
 		cout << "■ 白块      战士       法师  ■" << endl;
 		cout << "■  ↑                        ■" << endl;
-		nPlayerID = 1;
+		
 	}
 	else if (E_MENU_SETTING == nPlayerState)
 	{
@@ -68,7 +60,7 @@ void SPlayerMenu::render(){
 		cout << "■□□□    战战战     法法法 ■" << endl;
 		cout << "■ 白块      战士       法师  ■" << endl;
 		cout << "■            ↑              ■" << endl;
-		nPlayerID =2;
+		
 	}
 	else
 	{
@@ -76,11 +68,11 @@ void SPlayerMenu::render(){
 		cout << "■□□□    战战战     法法法 ■" << endl;
 		cout << "■ 白块      战士       法师  ■" << endl;
 		cout << "■                      ↑    ■" << endl;
-		nPlayerID = 3;
+		
 	}
 	
-		cout << "■         HP  "<<config.nHp  <<"            ■" << endl;
-		cout << "■        ACK  " <<config.nAck<<"             ■" << endl;
+		cout << "■         HP  "<<nHp  <<"            ■" << endl;
+		cout << "■        ACK  " <<nAck<<"             ■" << endl;
 		cout << "■         按Space确认        ■" << endl;
 		cout << "■                            ■" << endl;
 		cout << "■■■■■■■■■■■■■■■■" << endl;

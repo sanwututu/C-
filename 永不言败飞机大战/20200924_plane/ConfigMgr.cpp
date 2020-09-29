@@ -2,15 +2,24 @@
 #include "ConfigMgr.h"
 
 
-SConfigMgr::SConfigMgr()
+CConfigMgr::CConfigMgr()
 {
-	levelDtMgr.loadFile("Configs/LevelDt.txt");
-	bulletDtMgr.loadFile("Configs/BulletDt.txt");
-	enemyDtMgr.loadFile("Configs/EnemyDt.txt");
-	playerDtMgr.loadFile("Configs/PlayerDt.txt");
+	m_pLevelDtMgr = new CLevelDtMgr();
+	m_pLevelDtMgr->loadFile("Configs/LevelDt.txt");
+	m_pBulletDtMgr = new CBulletDtMgr();
+	m_pBulletDtMgr->loadFile("Configs/BulletDt.txt");
+	m_pEnemyDtMgr = new CEnemyDtMgr();
+	m_pEnemyDtMgr->loadFile("Configs/EnemyDt.txt");
+	m_pPlayerDtMgr = new CPlayerDtMgr();
+	m_pPlayerDtMgr->loadFile("Configs/PlayerDt.txt");
 }
 
 
-SConfigMgr::~SConfigMgr()
+CConfigMgr::~CConfigMgr()
 {
+	SAFE_DEL(m_pLevelDtMgr);
+	SAFE_DEL(m_pBulletDtMgr);
+	SAFE_DEL(m_pEnemyDtMgr);
+	SAFE_DEL(m_pPlayerDtMgr);
+
 }

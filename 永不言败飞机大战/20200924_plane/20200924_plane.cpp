@@ -7,14 +7,14 @@
 
 using namespace std;
 
-SConfigMgr g_configMgr;
-SGameMgr g_gameMgr;
+CConfigMgr* g_pConfigMgr = new CConfigMgr();
+CGameMgr* g_pGameMgr = new CGameMgr();
 
 int _tmain(int argc, _TCHAR* argv[])
 {
 	while (true){
-		g_gameMgr.update();
-		g_gameMgr.render();
+		g_pGameMgr->update();
+		g_pGameMgr->render();
 
 		system ("cls");
 	}
