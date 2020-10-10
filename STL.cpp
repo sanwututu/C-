@@ -128,6 +128,55 @@ int _tmain(int argc, _TCHAR* argv[])
 //获取当前个数
 //	cout<<mapStar.size()<<endl;
 
+//list列表
+
+//链式结构内存不连续，链式存储结构，增删效率高，查找效率低
+//数组和vector是连续的，顺序存储结构，与上相反
+	list<int> listNum;
+	//往链表末尾压入数据
+	listNum.push_back(2);
+	listNum.push_back(3);
+	listNum.push_back(4);
+	listNum.push_back(5);
+	listNum.push_back(6);
+	listNum.push_back(6);
+	listNum.push_back(7);
+
+	//弹出最后一个，7没了
+	listNum.pop_back();
+	//弹出第一个，2没了
+	listNum.pop_front();
+	//清空
+	listNum.clear();
+	//获取list链表第一个迭代器
+	listNum.begin();
+	//常迭代器
+	listNum.cbegin();
+	//取到最后一个元素
+	cout << listNum.back() << endl;
+	//取第一个元素
+	cout << listNum.front() << endl;;
+
+	listNum.empty();
+	listNum.size();
+	//通过迭代器遍历
+	//移除
+	for (list<int>::iterator iter = listNum.begin(); iter != listNum.end();)
+	{
+		if (6 == *iter)
+		{
+			iter = listNum.erase(iter);
+		}
+		else{
+			++iter;
+		}
+	}
+	//遍历输出
+	for (list<int>::iterator iter = listNum.begin(); iter != listNum.end(); ++iter)
+	{
+		cout << *iter << endl;
+	}
+
 	system("pause");
 	return 0;
 }
