@@ -28,7 +28,9 @@ SNode* findNode(int nIndex, SNode* pHead);
 void insertNode(SNode*& pHead, SNode* pInsertNode, int nIndex = 0);
 
 //删除
+SNode* deleteNode(SNode*&pHead,int nIndex = 0);
 //反转
+SNode* reverseList(SNode* pHead);
 int _tmain(int argc, _TCHAR* argv[])
 {
 	//首先必须保证链表头是存在的
@@ -37,21 +39,35 @@ int _tmain(int argc, _TCHAR* argv[])
 	cin >> pHead->nID;
 	createList(3,pHead);
 	//插入一个节点
-	SNode* pInertNode = new SNode();
-	pInertNode->nID = 1005;
-	insertNode(pHead, pInertNode);
+	// SNode* pInertNode = new SNode();
+	// pInertNode->nID = 1005;
+	// insertNode(pHead, pInertNode);
+	// traversingList(pHead);
+	// SNode* pFindNode = findNode(5, pHead);
+	// cout << "找到的节点信息：" << endl;
+	// if (pFindNode)
+	// {
+	// cout << pFindNode->nID << endl;
+	// }
+	// else
+	// {
+	// cout << "位置不存在" << endl;
+	// }
+	//删除节点
+	// int nIndex = 0;
+	// cin >> nIndex;
+	// pDeleteNode = deleteNode(pHead, nIndex); 
+	// cout << "被删除的节点信息：" << endl;
+	// if (pDeleteNode)
+	// {
+	// cout << pDeleteNode->nID << endl;
+	// }
+	// else
+	// {
+	// cout << "位置有误" << endl;
+	//
+	pHead = reverseList(pHead);
 	traversingList(pHead);
-	SNode* pFindNode = findNode(5, pHead);
-	cout << "找到的节点信息：" << endl;
-	if (pFindNode)
-	{
-	cout << pFindNode->nID << endl;
-	}
-	else
-	{
-	cout << "位置不存在" << endl;
-	}
-	
 	system("pause");
 	return 0;
 }
@@ -141,5 +157,64 @@ void insertNode(SNode*& pHead, SNode* pInsertNode, int nIndex /*=0*/ )
 	{
 		cout << "插入位置不对" << endl;
 	}
+}
+//删除
+SNode* deleteNode(SNode*& pHead,int nIndex){
+	SNode*pDeleteNode = nullptr;
+	if(0==nIndex){
+		//如果删除的是头节点
+		pDeleteNode = pHead;
+		//头节点下一个节点变为新头节点
+		pHead = pHead->pNextNode;
+	}else
+	{
+		//如果要删除的不是头节点
+		//获取要删除位置前一个节点，遍历
+		SNode*pCurNode = pHead;
+		//计数
+		int nCount = 0;
+		while(pCurNode){
+			//找到被删除的位置的前一个节点
+			if (nIndex-1 == nCount && pCurNode->pNextNode)//判断要删除节点是不是为空
+			{
+				//pCurNode就是要删除的位置的前一个节点。pCurNode->pNextNode:这个就是要被删除的节点。
+				pDeleteNode = pCurNode->pNextNode;
+				//把删除位置的前一个节点跟它的后一个节点连接
+				
+				pCurNode->pNextNode = pDeleteNode->pNextNode;//如果删除的位置刚好是最后一个节点的下一个节点（为空但是会走判断）会崩溃，其他就不会有问题。
+				/*if (pDeleteNode)
+				{
+				pCurNode->pNextNode = pDeleteNode->pNextNode;
+				}
+				*/
+			}
+			pCurNode = pCurNode->pNextNode;
+			nCount++;
+		}
+	}
+	return pDeleteNode;
+		}
+//反转
+SNode* reverseList(SNode* pHead)
+{
+	//存储逆序后的链表：前置链表
+	SNode* pPreNode = nullptr;
+	//存储当前找到的节点后面的链表
+	SNode* pNextNode = nullptr;
+	//为了拿到每次摘掉头之后的新链表的头，也是遍历用。
+	SNode* pCurNode = pHead;
+	while (pCurNode)
+	{
+		//把当前节点后面的链表存起来。
+		pNextNode = pCurNode->pNextNode;
+	
+		//上面存储完当前节点后面的链表后，可以把当前节点摘出来首先先让摘出来的节点的下一个节点指向前置链表
+		pCurNode->pNextNode = pPreNode;
+		//存储到逆序后的链表里面。移动preNode指针指向当前节点
+		pPreNode = pCurNode;
+		//遍历的代码
+		pCurNode = pNextNode;
+	}
+	return pPreNode;
 }
 
