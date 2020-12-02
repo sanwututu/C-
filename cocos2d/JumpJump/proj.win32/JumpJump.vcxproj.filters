@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="win32">
+      <UniqueIdentifier>{84a8ebd7-7cf0-47f6-b75e-d441df67da40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="resource">
+      <UniqueIdentifier>{715254bc-d70b-4ec5-bf29-467dd3ace079}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{bb6c862e-70e9-49d9-81b7-3829a6f50471}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Scene">
+      <UniqueIdentifier>{d4f19fb2-3ec3-4ffd-9f1e-43be4dadd1d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Objects">
+      <UniqueIdentifier>{db2f6fd7-6cc2-4cf5-9ab7-242066a1ea4e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Layers">
+      <UniqueIdentifier>{51783a3b-08ae-495e-b6ca-9f5cc71a9e93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Data">
+      <UniqueIdentifier>{af8acdcc-0212-48f6-b75b-24a5f09b1c7f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\AppDelegate.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\HelloWorldScene.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMenu.cpp">
+      <Filter>src\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameScene.cpp">
+      <Filter>src\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\MoonMgr.cpp">
+      <Filter>src\Layers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Player.cpp">
+      <Filter>src\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\StarMgr.cpp">
+      <Filter>src\Layers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\ItemMgr.cpp">
+      <Filter>src\Layers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Cloud.cpp">
+      <Filter>src\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Star.cpp">
+      <Filter>src\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\DataBase.cpp">
+      <Filter>src\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\DataClass.cpp">
+      <Filter>src\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\LoadData.cpp">
+      <Filter>src\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\ConfigMgr.cpp">
+      <Filter>src\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\EndScene.cpp">
+      <Filter>src\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamePause.cpp">
+      <Filter>src\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\PopScene.cpp">
+      <Filter>src\Layers</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="main.h">
+      <Filter>win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\AppDelegate.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\HelloWorldScene.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMenu.h">
+      <Filter>src\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameScene.h">
+      <Filter>src\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\MoonMgr.h">
+      <Filter>src\Layers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Player.h">
+      <Filter>src\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\StarMgr.h">
+      <Filter>src\Layers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ItemMgr.h">
+      <Filter>src\Layers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Cloud.h">
+      <Filter>src\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Star.h">
+      <Filter>src\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\DataBase.h">
+      <Filter>src\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\DataClass.h">
+      <Filter>src\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\LoadData.h">
+      <Filter>src\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ConfigMgr.h">
+      <Filter>src\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\EndScene.h">
+      <Filter>src\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamePause.h">
+      <Filter>src\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\PopScene.h">
+      <Filter>src\Layers</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="game.rc">
+      <Filter>resource</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

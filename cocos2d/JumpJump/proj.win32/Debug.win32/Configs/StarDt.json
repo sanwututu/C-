@@ -1,0 +1,30 @@
+[
+    {
+        "id":2001,
+        "score":1,
+        "imgs":[
+            "star0.png"
+        ]
+    },
+    {
+        "id":2002,
+        "score":1,
+        "imgs":[
+            "star1.png"
+        ]
+    },
+    {
+        "id":2003,
+        "score":2,
+        "imgs":[
+            "star2.png"
+        ]
+    },
+    {
+        "id":2004,
+        "score":-1,
+        "imgs":[
+            "star3.png"
+        ]
+    }
+]
