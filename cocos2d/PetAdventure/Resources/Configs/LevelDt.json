@@ -1,0 +1,11 @@
+[{
+    "id": 1001,
+    "coinLimit":15,
+    "mapName": "Game/Tiles/Map1.tmx"
+},
+{
+    "id": 1002,
+    "coinLimit":20,
+    "mapName": "Game/Tiles/map2.tmx"
+}
+]

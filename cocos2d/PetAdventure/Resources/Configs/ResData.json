@@ -1,0 +1,37 @@
+{
+	"Common": {
+		"png": [
+			"Common/ui_ProgressBar_01.png",
+			"Common/ui_ProgressBar_02.png"
+		],
+		"plist": [],
+		"audio": []
+	},
+	"Menu": {
+		"png": [
+			"Default-Landscape_ipad.png",
+			"Menu/Menu.png"
+		],
+		"plist": ["Menu/Menu.plist"],
+		"audio": []
+	},
+	"Game": {
+		"png": [
+			"Game/cat.png",
+			"Game/dog.png",
+			"Game/enemy.png",
+			"Game/scene.png",
+			"Game/coin.png",
+			"Game/master.png"
+		],
+		"plist": [
+			"Game/cat.plist",
+			"Game/dog.plist",
+			"Game/enemy.plist",
+			"Game/scene.plist",
+			"Game/coin.plist",
+			"Game/master.plist"
+		],
+		"audio": []
+	}
+}
